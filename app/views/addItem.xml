@@ -1,0 +1,19 @@
+<Alloy>
+	<Model src="item" id="item" instance="true" />
+    <Window id="addItemWindow" class="container" titleid="addItem">
+        <View layout="vertical">
+            <Label id="titleLbl" titleid="titleLbl" />
+            <TextField id="titleTxt" value="{$.item.title}"/>
+            <Label id="notesLbl" titleid="notesLbl" />
+            <TextArea id="notesTxt" value="{$.item.notes}" />
+            <View id="View_2" onClick="onCalendarClick">
+                <TextField id="dateTxt" name="dateTxt" value="{$.item.dueDate}" touchEnabled="false" />
+                <ImageView id="calendarBtn" />
+            </View>
+            <View id="View_1">
+                <Button backgroundColor="#cb564d" id="cancelBtn" onClick="onClickCancel" />
+                <Button backgroundColor="#3792c6" id="saveBtn"   onClick="onClickSave" />
+            </View>
+        </View>
+    </Window>
+</Alloy>

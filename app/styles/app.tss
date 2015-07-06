@@ -1,0 +1,27 @@
+
+"Window":{
+	backgroundColor: '#fff',
+	barColor:"#CD1625",
+	navTintColor:"#fff",
+	titleAttributes:{
+		color:"#fff"
+	}
+},
+
+"Label": {
+	"width": Ti.UI.SIZE,
+	"height": Ti.UI.SIZE,
+	"color": "#555"
+},
+
+"TextField[platform=android]": {
+	height: Ti.UI.SIZE 
+}
+
+"Button": {
+	"color": "#ffffff",
+	"borderRadius": "10",
+	"borderWidth": "0",
+	"height": "45",
+	"width":"27%"
+}

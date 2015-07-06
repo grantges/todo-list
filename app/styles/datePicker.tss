@@ -1,0 +1,32 @@
+".container": {
+	backgroundColor: "#AA000000",
+	height: 265,
+	width: "98%",
+},
+".contianer[platform=android]":{
+	backgroundColor:"#000",
+	height: 300
+}
+
+"#picker":{
+	maxDate: "May 1, 2020 12:00:00",
+	bottom: 70,
+	height: 200,
+	width:"90%",
+	borderRadius: 3
+}
+
+"#picker[platform=android]":{
+	height: 500,
+}
+
+"#submitBtn":{
+	right: "5%",
+	bottom: "2%",
+	
+}
+
+"#cancelBtn":{
+	left: "5%",
+	bottom: "2%",
+}

@@ -1,0 +1,7 @@
+<Alloy>
+    <View class="container" height="Ti.UI.FILL" width="Ti.UI.FILL">
+        <Picker id="picker" onChange="onUpdate" type="Ti.UI.PICKER_TYPE_DATE"/>
+        <Button backgroundColor="#3792c6" id="submitBtn" onClick="onSubmit" titleid="okBtn"/>
+        <Button backgroundColor="#cb564d" id="cancelBtn" onClick="onCancel" titleid="cancelBtn"/>
+    </View>
+</Alloy>

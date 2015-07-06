@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="appname">ToDo List</string>
+	<string name="addItem">Add Item</string>
+	<string name="cancelBtn">Cancel</string>
+	<string name="saveBtn">Save</string>
+	<string name="okBtn">Ok</string>
+	<string name="titleLbl">Title</string>
+	<string name="notesLbl">Notes</string>
+	<string name="dueDateLbl">Due Date</string>
+</resources>

@@ -1,0 +1,30 @@
+
+"TableViewRow":{
+	selectedBackgroundColor:"#038BC8"
+}
+
+
+".row":{
+	height: 65,
+	layout:"vertical"	
+},
+
+"Label":{
+	left: 15
+}
+
+".title":{
+	font:{
+		fontSize: 16,
+		fontWeight: "bold"
+	},
+	top: 10
+}
+
+".subTitle":{
+	font:{
+		fontSize: 14,
+	},
+	color: "#999",
+	top: 3
+}

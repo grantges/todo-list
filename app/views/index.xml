@@ -1,0 +1,13 @@
+<Alloy>
+ 	<!-- Navigation scheme for the application -->
+ 
+   	<Require src="main" id="index" platform="android" />
+   	
+	<NavigationWindow platform="ios">
+		<Require src="main" />
+	</NavigationWindow>
+	
+	<NavigationGroup platform="mobileweb">
+		<Require src="main" />
+	</NavigationGroup>
+</Alloy>
