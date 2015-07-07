@@ -1,25 +1,48 @@
 
 var args = arguments[0] || {};
-var $A = require('alloy/animation');
-var _callback = args.callback || null;
 var items = Alloy.Collections.item;
 
-if(args.id){
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//# Initialization
+
+initView();
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//# Methods 
+
+function initView(){
 	
-	var model = items.get(args.id);
+	if(args.id){
 	
-	$.item.set(model);
-	$.addItemWindow.title = $.item.get("title");
+		$model = items.get(args.id);
+		$.item.set($model);
+		$.addItemWindow.title = $.item.get("title");
 	
+	}	
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//# Button Event Handlers
+
 
 /**
  * onClick event handler for the Cancel Button
  */
 function onClickCancel(e) {
+	
+	/**
+	 * Appcelerator Analytics Event
+	 */
+	Ti.Analytics.featureEvent('item.add.cancel');
+	
+	
+	/**
+	 * Close the window
+	 */
 	$.addItemWindow.close();
 	
-	_callback && _callback({cancelled:true});
 }
 
 /**
@@ -33,23 +56,27 @@ function onClickSave(e) {
 	 */
 	if($.titleTxt.value) {
 		
+		if(!$model) {
+			$model = Alloy.createModel('item');
+			items.add($model);
+		}
+		
+		$model.set('title', $.titleTxt.value);
+		$model.set('notes', $.notesTxt.value);
+		$model.set('dueDate', $.dateTxt.value);
+		
+		$model.save();
+		
 		/**
-		 * check to make sure that a callback was passed into the view as an initial parameter (see above).
-		 * If a callback exists then send the data captured in this form back to the main view.
-		 * 
-		 * Best Practice:
-		 * Data Handling can be confusing, so localizing the data interactions as much as possible is key to your success
-		 * in mobile. While we could save the model here and then just close the app, by using this as a view to gather 
-		 * information and  pass it back to the main view, we can localize all data manipulation to a single view.
-		 * 
-		 * This practice also allows for greater use and flexibility of this view 
+		 * Appcelerator Analytics Event
 		 */
-		_callback && _callback({
-			title: $.titleTxt.value,
-			notes: $.notesTxt.value,
-			dueDate: $.dateTxt.value
+		Ti.Analytics.featureEvent('item.add.success', {
+			title: ($.titleTxt.value) ? true : false,
+			notes: ($.notesTxt.value) ? true : false,
+			dueDate: ($.dateTxt.value) ? true : false 
 		});
 		
+		/** Close the Window **/
 		$.addItemWindow.close();	
 	}
 	else {
@@ -58,6 +85,10 @@ function onClickSave(e) {
 		
 	}
 }
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//# DatePicker Event Handler
+
 
 function onCalendarClick(e){
 	

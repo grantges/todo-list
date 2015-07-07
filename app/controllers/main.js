@@ -27,58 +27,10 @@ items.fetch();
 function onAddItemClick() {
 	
 	/**
-	 * Callback function. Takes an model object as a result OR has a cancelled property if the user
-	 * cancelled the flow.
-	 * 
-	 * @param {Object} result
-	 */
-	function onResult(result) {
-		
-		
-		if(result.cancelled){
-			Ti.Analytics.featureEvent('item.add.cancelled');
-			return;
-		}
-		
-		/**
-		 * Create new `item` Model :: The `result` object is referenced after the fields of the `item` model allowing
-		 * you to pass the JS object directly into the `.createModel` function 
-		 */
-		var item = Alloy.createModel('item', result);
-		
-		/**
-		 * Add the item to the collection - this is important, otherwise saving the model will not work.
-		 */
-		items.add(item);
-		
-		/**
-		 * Once the model is added to the collection, we can save it to the associated adapter, in this case SQLite.
-		 */
-		item.save();
-		
-		
-		/**
-		 * To trigger the TableView databinding, you call the `fetch` function against the collection to refresh the dataset
-		 * re-render the TableView
-		 */
-		items.fetch();
-		
-		
-		/**
-		 * Appcelerator Analytics Event
-		 */
-		Ti.Analytics.featureEvent('item.add.success', {
-			title: (item.get('title')) ? true : false,
-			date: (item.get('dueDate')) ? true : false,
-			notes: (item.get('notes')) ? true : false 
-		});
-	}
-	
-	/**
 	 * Cross Platform Navigation (see index.js)
 	 * ProTip - CMD+Click (mac) or CTRL+Click (win) the `open` function to jump to its definition
 	 */
-	Alloy.Globals.Navigator.open('addItem', {callback: onResult});
+	Alloy.Globals.Navigator.open('addItem');
 };
 
 /**

@@ -2,9 +2,9 @@
 	<Model src="item" id="item" instance="true" />
     <Window id="addItemWindow" class="container" titleid="addItem">
         <View layout="vertical">
-            <Label id="titleLbl" titleid="titleLbl" />
+            <Label id="titleLbl" textid="titleLbl" />
             <TextField id="titleTxt" value="{$.item.title}"/>
-            <Label id="notesLbl" titleid="notesLbl" />
+            <Label id="notesLbl" textid="notesLbl" />
             <TextArea id="notesTxt" value="{$.item.notes}" />
             <View id="View_2" onClick="onCalendarClick">
                 <TextField id="dateTxt" name="dateTxt" value="{$.item.dueDate}" touchEnabled="false" />

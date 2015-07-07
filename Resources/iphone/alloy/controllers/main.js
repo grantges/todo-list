@@ -57,24 +57,7 @@ function Controller() {
         $.__views.tableView.setData(rows);
     }
     function onAddItemClick() {
-        function onResult(result) {
-            if (result.cancelled) {
-                Ti.Analytics.featureEvent("item.add.cancelled");
-                return;
-            }
-            var item = Alloy.createModel("item", result);
-            items.add(item);
-            item.save();
-            items.fetch();
-            Ti.Analytics.featureEvent("item.add.success", {
-                title: item.get("title") ? true : false,
-                date: item.get("dueDate") ? true : false,
-                notes: item.get("notes") ? true : false
-            });
-        }
-        Alloy.Globals.Navigator.open("addItem", {
-            callback: onResult
-        });
+        Alloy.Globals.Navigator.open("addItem");
     }
     function onEditClick() {
         $.tableView.editing = !$.tableView.editing;

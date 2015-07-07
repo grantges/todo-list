@@ -8,18 +8,31 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function initView() {
+        if (args.id) {
+            $model = items.get(args.id);
+            $.item.set($model);
+            $.addItemWindow.title = $.item.get("title");
+        }
+    }
     function onClickCancel() {
+        Ti.Analytics.featureEvent("item.add.cancel");
         $.addItemWindow.close();
-        _callback && _callback({
-            cancelled: true
-        });
     }
     function onClickSave() {
         if ($.titleTxt.value) {
-            _callback && _callback({
-                title: $.titleTxt.value,
-                notes: $.notesTxt.value,
-                dueDate: $.dateTxt.value
+            if (!$model) {
+                $model = Alloy.createModel("item");
+                items.add($model);
+            }
+            $model.set("title", $.titleTxt.value);
+            $model.set("notes", $.notesTxt.value);
+            $model.set("dueDate", $.dateTxt.value);
+            $model.save();
+            Ti.Analytics.featureEvent("item.add.success", {
+                title: $.titleTxt.value ? true : false,
+                notes: $.notesTxt.value ? true : false,
+                dueDate: $.dateTxt.value ? true : false
             });
             $.addItemWindow.close();
         } else alert("Oops! Did you forget to add a title?");
@@ -65,9 +78,7 @@ function Controller() {
         {
             __processArg(arguments[0], "__parentSymbol");
         }
-        {
-            __processArg(arguments[0], "$model");
-        }
+        var $model = __processArg(arguments[0], "$model");
         {
             __processArg(arguments[0], "__itemTemplate");
         }
@@ -105,7 +116,7 @@ function Controller() {
         id: "titleLbl",
         left: "5%",
         top: "5%",
-        titleid: "titleLbl"
+        textid: "titleLbl"
     });
     $.__views.__alloyId0.add($.__views.titleLbl);
     $.__views.titleTxt = Ti.UI.createTextField({
@@ -135,7 +146,7 @@ function Controller() {
         id: "notesLbl",
         left: "5%",
         top: "5%",
-        titleid: "notesLbl"
+        textid: "notesLbl"
     });
     $.__views.__alloyId0.add($.__views.notesLbl);
     $.__views.notesTxt = Ti.UI.createTextArea({
@@ -237,14 +248,8 @@ function Controller() {
     };
     _.extend($, $.__views);
     var args = arguments[0] || {};
-    require("alloy/animation");
-    var _callback = args.callback || null;
     var items = Alloy.Collections.item;
-    if (args.id) {
-        var model = items.get(args.id);
-        $.item.set(model);
-        $.addItemWindow.title = $.item.get("title");
-    }
+    initView();
     __defers["$.__views.View_2!click!onCalendarClick"] && $.__views.View_2.addEventListener("click", onCalendarClick);
     __defers["$.__views.cancelBtn!click!onClickCancel"] && $.__views.cancelBtn.addEventListener("click", onClickCancel);
     __defers["$.__views.saveBtn!click!onClickSave"] && $.__views.saveBtn.addEventListener("click", onClickSave);
