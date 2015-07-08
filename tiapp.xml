@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app 
   xmlns:ti="http://ti.appcelerator.org">
-  <id>__PROJECT_ID__</id>
-  <name>__PROJECT_NAME__</name>
-  <version>1.0</version>
-  <publisher></publisher>
-  <url>http://</url>
-  <description></description>
-  <copyright>2015 by bgrantges</copyright>
-  <icon>appicon.png</icon>
-  <fullscreen>false</fullscreen>
-  <navbar-hidden>false</navbar-hidden>
-  <analytics>true</analytics>
-  <guid></guid>
+  
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <ios>
     <plist>
