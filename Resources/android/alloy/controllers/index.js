@@ -33,7 +33,7 @@ function Controller() {
     Alloy.Globals.Navigator = {
         win: null,
         open: function(controller, options) {
-            Alloy.Globals.Navigator.currentWindow = Alloy.createController(controller, options).getView();
+            Alloy.Globals.Navigator.win = Alloy.createController(controller, options).getView();
             Alloy.Globals.Navigator.win.open();
         }
     };

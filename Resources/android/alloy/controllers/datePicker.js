@@ -8,6 +8,10 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function initView() {
+        _.extend($.datePicker, args.attributes);
+        date = new Date().toGMTString();
+    }
     function onUpdate(e) {
         var d = new Date(e.value);
         date = d.toGMTString();
@@ -38,10 +42,7 @@ function Controller() {
     var exports = {};
     var __defers = {};
     $.__views.datePicker = Ti.UI.createView({
-        viewShadowColor: "#666",
-        viewShadowOffset: "5",
-        viewShadowRadius: "10",
-        backgroundColor: "#fff",
+        backgroundColor: "#000",
         height: Ti.UI.FILL,
         width: Ti.UI.FILL,
         id: "datePicker"
@@ -49,10 +50,14 @@ function Controller() {
     $.__views.datePicker && $.addTopLevelView($.__views.datePicker);
     $.__views.picker = Ti.UI.createPicker({
         maxDate: new Date("Fri May 01 2020 12:00:00 GMT-0500 (CDT)"),
-        type: "Ti.UI.PICKER_TYPE_DATE",
-        bottom: "70",
-        height: "500",
-        id: "picker"
+        bottom: 70,
+        height: Ti.UI.FILL,
+        width: "90%",
+        borderRadius: 3,
+        format24: false,
+        calendarViewShown: false,
+        id: "picker",
+        type: Ti.UI.PICKER_TYPE_DATE
     });
     $.__views.datePicker.add($.__views.picker);
     onUpdate ? $.__views.picker.addEventListener("change", onUpdate) : __defers["$.__views.picker!change!onUpdate"] = true;
@@ -63,7 +68,7 @@ function Controller() {
         height: "45",
         width: "27%",
         right: "5%",
-        bottom: 20,
+        bottom: "2%",
         backgroundColor: "#3792c6",
         id: "submitBtn",
         titleid: "okBtn"
@@ -77,7 +82,7 @@ function Controller() {
         height: "45",
         width: "27%",
         left: "5%",
-        bottom: 20,
+        bottom: "2%",
         backgroundColor: "#cb564d",
         id: "cancelBtn",
         titleid: "cancelBtn"
@@ -89,6 +94,8 @@ function Controller() {
     var args = arguments[0] || {};
     var cancel = args.cancel || null;
     var ok = args.ok || null;
+    var date;
+    initView();
     __defers["$.__views.picker!change!onUpdate"] && $.__views.picker.addEventListener("change", onUpdate);
     __defers["$.__views.submitBtn!click!onSubmit"] && $.__views.submitBtn.addEventListener("click", onSubmit);
     __defers["$.__views.cancelBtn!click!onCancel"] && $.__views.cancelBtn.addEventListener("click", onCancel);

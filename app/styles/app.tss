@@ -15,7 +15,8 @@
 },
 
 "TextField[platform=android]": {
-	height: Ti.UI.SIZE 
+	height: Ti.UI.SIZE,
+	color: "#333"
 }
 
 "Button": {

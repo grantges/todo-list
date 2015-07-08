@@ -3,9 +3,9 @@
 	height: 265,
 	width: "98%",
 },
-".contianer[platform=android]":{
+
+".container[platform=android]":{
 	backgroundColor:"#000",
-	height: 300
 }
 
 "#picker":{
@@ -17,7 +17,8 @@
 }
 
 "#picker[platform=android]":{
-	height: 500,
+	height: Ti.UI.FILL,
+
 }
 
 "#submitBtn":{

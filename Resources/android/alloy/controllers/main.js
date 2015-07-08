@@ -8,45 +8,46 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
-    function __alloyId5() {
-        $.__views.main.removeEventListener("open", __alloyId5);
+    function __alloyId7() {
+        $.__views.main.removeEventListener("open", __alloyId7);
         if ($.__views.main.activity) $.__views.main.activity.onCreateOptionsMenu = function(e) {
-            var __alloyId4 = {
+            var __alloyId6 = {
                 title: "Add Item",
                 icon: Ti.Android.R.drawable.ic_menu_add,
                 showAsAction: Titanium.Android.SHOW_AS_ACTION_IF_ROOM,
-                id: "__alloyId3"
+                id: "__alloyId5"
             };
-            $.__views.__alloyId3 = e.menu.add(_.pick(__alloyId4, Alloy.Android.menuItemCreateArgs));
-            $.__views.__alloyId3.applyProperties(_.omit(__alloyId4, Alloy.Android.menuItemCreateArgs));
-            $.__alloyId3 = $.__views.__alloyId3;
-            onAddItemClick ? $.__views.__alloyId3.addEventListener("click", onAddItemClick) : __defers["$.__views.__alloyId3!click!onAddItemClick"] = true;
+            $.__views.__alloyId5 = e.menu.add(_.pick(__alloyId6, Alloy.Android.menuItemCreateArgs));
+            $.__views.__alloyId5.applyProperties(_.omit(__alloyId6, Alloy.Android.menuItemCreateArgs));
+            $.__alloyId5 = $.__views.__alloyId5;
+            onAddItemClick ? $.__views.__alloyId5.addEventListener("click", onAddItemClick) : __defers["$.__views.__alloyId5!click!onAddItemClick"] = true;
         }; else {
             Ti.API.warn("You attempted to attach an Android Menu to a lightweight Window");
             Ti.API.warn("or other UI component which does not have an Android activity.");
             Ti.API.warn("Android Menus can only be opened on TabGroups and heavyweight Windows.");
         }
     }
-    function __alloyId17(e) {
+    function __alloyId18(e) {
         if (e && e.fromAdapter) return;
-        __alloyId17.opts || {};
-        var models = __alloyId16.models;
+        __alloyId18.opts || {};
+        var models = __alloyId17.models;
         var len = models.length;
         var rows = [];
         for (var i = 0; len > i; i++) {
-            var __alloyId7 = models[i];
-            __alloyId7.__transform = onItemTransform(__alloyId7);
-            var __alloyId9 = Ti.UI.createTableViewRow({
-                selectedBackgroundColor: "#92C058",
-                hasDetail: "undefined" != typeof __alloyId7.__transform["hasDetail"] ? __alloyId7.__transform["hasDetail"] : __alloyId7.get("hasDetail")
+            var __alloyId8 = models[i];
+            __alloyId8.__transform = onItemTransform(__alloyId8);
+            var __alloyId10 = Ti.UI.createTableViewRow({
+                selectedBackgroundColor: "#038BC8",
+                hasChild: "true",
+                modelid: "undefined" != typeof __alloyId8.__transform["alloy_id"] ? __alloyId8.__transform["alloy_id"] : __alloyId8.get("alloy_id")
             });
-            rows.push(__alloyId9);
-            var __alloyId11 = Ti.UI.createView({
+            rows.push(__alloyId10);
+            var __alloyId12 = Ti.UI.createView({
                 height: 65,
                 layout: "vertical"
             });
-            __alloyId9.add(__alloyId11);
-            var __alloyId13 = Ti.UI.createLabel({
+            __alloyId10.add(__alloyId12);
+            var __alloyId14 = Ti.UI.createLabel({
                 width: Ti.UI.SIZE,
                 height: Ti.UI.SIZE,
                 color: "#555",
@@ -56,48 +57,42 @@ function Controller() {
                     fontWeight: "bold"
                 },
                 top: 10,
-                text: "undefined" != typeof __alloyId7.__transform["title"] ? __alloyId7.__transform["title"] : __alloyId7.get("title")
+                text: "undefined" != typeof __alloyId8.__transform["title"] ? __alloyId8.__transform["title"] : __alloyId8.get("title")
             });
-            __alloyId11.add(__alloyId13);
-            var __alloyId15 = Ti.UI.createLabel({
+            __alloyId12.add(__alloyId14);
+            var __alloyId16 = Ti.UI.createLabel({
                 width: Ti.UI.SIZE,
                 height: Ti.UI.SIZE,
-                color: "undefined" != typeof __alloyId7.__transform["dateColor"] ? __alloyId7.__transform["dateColor"] : __alloyId7.get("dateColor"),
+                color: "undefined" != typeof __alloyId8.__transform["dateColor"] ? __alloyId8.__transform["dateColor"] : __alloyId8.get("dateColor"),
                 left: 15,
                 font: {
                     fontSize: 14
                 },
                 top: 3,
-                text: "undefined" != typeof __alloyId7.__transform["date"] ? __alloyId7.__transform["date"] : __alloyId7.get("date")
+                text: "undefined" != typeof __alloyId8.__transform["date"] ? __alloyId8.__transform["date"] : __alloyId8.get("date")
             });
-            __alloyId11.add(__alloyId15);
+            __alloyId12.add(__alloyId16);
         }
-        $.__views.__alloyId6.setData(rows);
+        $.__views.tableView.setData(rows);
     }
     function onAddItemClick() {
-        function saveItem(result) {
-            if (result.canncelled) {
-                Ti.Analytics.featureEvent("item.add.cancelled");
-                return;
-            }
-            var item = Alloy.createModel("item", result);
-            items.add(item);
-            item.save();
+        Alloy.Globals.Navigator.open("addItem");
+    }
+    function onDeleteRow(e) {
+        if (e.row && e.row.modelid) {
+            var model = items.get(e.row.modelid);
+            model.destroy();
             items.fetch();
-            Ti.Analytics.featureEvent("item.add.success", {
-                title: item.get("title") ? true : false,
-                date: item.get("dueDate") ? true : false,
-                notes: item.get("notes") ? true : false
-            });
         }
-        Alloy.createController("AddItem", {
-            callback: saveItem
-        }).getView().open();
+    }
+    function onTableViewClick(e) {
+        Alloy.Globals.Navigator.open("addItem", {
+            id: e.row.modelid
+        });
     }
     function onItemTransform(model) {
         var item = model.toJSON();
-        item.hasDetail = false;
-        item.date = moment(item.dueDate).format("MMMM Do, YYYY");
+        item.date = item.dueDate ? moment(item.dueDate).format("MMMM Do, YYYY") : "";
         item.dateColor = moment(item.date).isBefore() ? "#cb564d" : "#999";
         return item;
     }
@@ -121,24 +116,34 @@ function Controller() {
     Alloy.Collections.instance("item");
     $.__views.main = Ti.UI.createWindow({
         backgroundColor: "#fff",
+        barColor: "#CD1625",
+        navTintColor: "#fff",
+        titleAttributes: {
+            color: "#fff"
+        },
         titleid: "appname",
         id: "main"
     });
     $.__views.main && $.addTopLevelView($.__views.main);
-    $.__views.main.addEventListener("open", __alloyId5);
-    $.__views.__alloyId6 = Ti.UI.createTableView({
-        id: "__alloyId6"
+    $.__views.main.addEventListener("open", __alloyId7);
+    $.__views.tableView = Ti.UI.createTableView({
+        id: "tableView"
     });
-    $.__views.main.add($.__views.__alloyId6);
-    var __alloyId16 = Alloy.Collections["item"] || item;
-    __alloyId16.on("fetch destroy change add remove reset", __alloyId17);
+    $.__views.main.add($.__views.tableView);
+    var __alloyId17 = Alloy.Collections["item"] || item;
+    __alloyId17.on("fetch destroy change add remove reset", __alloyId18);
+    onTableViewClick ? $.__views.tableView.addEventListener("click", onTableViewClick) : __defers["$.__views.tableView!click!onTableViewClick"] = true;
+    onDeleteRow ? $.__views.tableView.addEventListener("delete", onDeleteRow) : __defers["$.__views.tableView!delete!onDeleteRow"] = true;
     exports.destroy = function() {
-        __alloyId16.off("fetch destroy change add remove reset", __alloyId17);
+        __alloyId17.off("fetch destroy change add remove reset", __alloyId18);
     };
     _.extend($, $.__views);
-    var items = (arguments[0] || {}, Alloy.Collections.item), moment = require("alloy/moment");
+    var moment = (arguments[0] || {}, require("alloy/moment"));
+    var items = Alloy.Collections.item;
     items.fetch();
-    __defers["$.__views.__alloyId3!click!onAddItemClick"] && $.__views.__alloyId3.addEventListener("click", onAddItemClick);
+    __defers["$.__views.__alloyId5!click!onAddItemClick"] && $.__views.__alloyId5.addEventListener("click", onAddItemClick);
+    __defers["$.__views.tableView!click!onTableViewClick"] && $.__views.tableView.addEventListener("click", onTableViewClick);
+    __defers["$.__views.tableView!delete!onDeleteRow"] && $.__views.tableView.addEventListener("delete", onDeleteRow);
     _.extend($, exports);
 }
 
