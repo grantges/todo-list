@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app 
   xmlns:ti="http://ti.appcelerator.org">
-  <id>com.appcelerator.todolist</id>
-  <name>TodoList</name>
+  <id>__PROJECT_ID__</id>
+  <name>__PROJECT_NAME__</name>
   <version>1.0</version>
-  <publisher>bgrantges</publisher>
-  <url>http://</url>
-  <description>undefined</description>
-  <copyright>2015 by bgrantges</copyright>
+  <publisher>not specified</publisher>
+  <url>not specified</url>
+  <description></description>
+  <copyright>not specified</copyright>
   <icon>appicon.png</icon>
   <fullscreen>false</fullscreen>
   <navbar-hidden>false</navbar-hidden>
   <analytics>true</analytics>
-  <guid>fe075bab-eecd-4e9e-9333-9e6382b56045</guid>
+  <guid></guid>
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <ios>
     <plist>
@@ -36,19 +36,6 @@
         <false/>
         <key>UIStatusBarStyle</key>
         <string>UIStatusBarStyleDefault</string>
-        <key>CFBundleURLTypes</key>
-        <array>
-          <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLName</key>
-            <string>com.appcelerator.todolist</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-              <string>touchtest-todolist</string>
-            </array>
-          </dict>
-        </array>
       </dict>
     </plist>
   </ios>
@@ -68,7 +55,6 @@
             <category android:name="android.intent.category.DEFAULT"/>
           </intent-filter>
         </activity>
-        <service android:enabled="true" android:exported="false" android:name="com.soasta.android.touchtest.TouchTestService"/>
       </application>
       <uses-sdk android:minSdkVersion="14"/>
       <uses-sdk android:targetSdkVersion="21"/>
@@ -88,42 +74,15 @@
     </splash>
     <theme>default</theme>
   </mobileweb>
-  <modules>
-    <module platform="iphone" version="1.0">com.soasta.touchtest</module>
-    <module platform="android" version="1.0">com.soasta.touchtest</module>
-    <module platform="commonjs">ti.cloud</module>
-    <module platform="android">com.appcelerator.apm</module>
-    <module platform="iphone">com.appcelerator.apm</module>
-  </modules>
+  <modules />
   <deployment-targets>
     <target device="android">true</target>
     <target device="ipad">true</target>
     <target device="iphone">true</target>
-    <target device="mobileweb">true</target>
+    <target device="mobileweb">false</target>
   </deployment-targets>
   <sdk-version>4.0.0.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
-    <plugin>com.soasta.touchtest.android</plugin>
   </plugins>
-  <property name="appc-app-id" type="string">558048d38b729a125b80d27b</property>
-  <property name="com-soasta-touchtest-version" type="string">7732.313</property>
-  <property name="com-soasta-touchtest-ios-appId" type="string">372702</property>
-  <property name="acs-authbase-url-development" type="string">https://secure-identity.cloud.appcelerator.com</property>
-  <property name="acs-base-url-development" type="string">https://api.cloud.appcelerator.com</property>
-  <property name="acs-oauth-secret-development" type="string">uXvNJQ8pBZCdF5fae7Dyj7oCpoLPYMg8</property>
-  <property name="acs-oauth-key-development" type="string">2uXYWAlkIVN3Is1WgfK8D6rItngIKJfW</property>
-  <property name="acs-api-key-development" type="string">997TmuhExZ2HO0lbCyQc4sTOyEcd9fAu</property>
-  <property name="acs-username-development" type="string">appc_app_user_dev</property>
-  <property name="acs-password-development" type="string">ryycH4LAS2wI1teZma</property>
-  <property name="acs-authbase-url-production" type="string">https://secure-identity.cloud.appcelerator.com</property>
-  <property name="acs-base-url-production" type="string">https://api.cloud.appcelerator.com</property>
-  <property name="acs-oauth-secret-production" type="string">FOD8dKfPOsT0yG0ZYKwF3kmIi3KNwqpT</property>
-  <property name="acs-oauth-key-production" type="string">2QsEvcgF0K5WSrLAXfC6NFsSPPzfMJxW</property>
-  <property name="acs-api-key-production" type="string">hLIHvUzs0PXjMzKtPrrORUx6SjoaJery</property>
-  <property name="acs-username-production" type="string">appc_app_user</property>
-  <property name="acs-password-production" type="string">hOglPGiW9Yh26JOgsi</property>
-  <property name="appc-org-id" type="string">100006795</property>
-  <property name="appc-creator-user-id" type="string">12c3db80-1e37-4958-bf7a-e51097e7b744</property>
-  <property name="com-appcelerator-apm-id" type="string">5595632adfc1280c004615eb</property>
 </ti:app>
