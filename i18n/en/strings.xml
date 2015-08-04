@@ -2,6 +2,7 @@
 <resources>
 	<string name="appname">ToDo List</string>
 	<string name="addItem">Add Item</string>
+	<string name="deleteBtn">Delete</string>
 	<string name="cancelBtn">Cancel</string>
 	<string name="saveBtn">Save</string>
 	<string name="okBtn">Ok</string>

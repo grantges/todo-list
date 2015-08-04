@@ -1,7 +1,5 @@
 var Alloy = require("alloy"), _ = require("alloy/underscore")._, model, collection;
 
-var moment = require("alloy/moment");
-
 exports.definition = {
     config: {
         columns: {
@@ -16,21 +14,11 @@ exports.definition = {
         }
     },
     extendModel: function(Model) {
-        _.extend(Model.prototype, {
-            isBefore: function() {
-                var model = this.toJSON();
-                if (model.dueDate) return moment(model.dueDate.substring(0, model.dueDate.indexOf(" "))).isBefore();
-                return false;
-            }
-        });
+        _.extend(Model.prototype, {});
         return Model;
     },
     extendCollection: function(Collection) {
-        _.extend(Collection.prototype, {
-            comparator: function(a) {
-                return moment(a.get("dueDate"));
-            }
-        });
+        _.extend(Collection.prototype, {});
         return Collection;
     }
 };

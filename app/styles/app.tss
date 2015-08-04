@@ -1,28 +1,22 @@
-
-"Window":{
-	backgroundColor: '#fff',
-	barColor:"#CD1625",
-	navTintColor:"#fff",
-	titleAttributes:{
-		color:"#fff"
-	}
+"Window": {
+	"backgroundColor": "#fff",
+	"barColor": "#CD1625",
+	"navTintColor": "#fff",
+	"titleAttributes": {color:"#fff"}
 },
-
 "Label": {
 	"width": Ti.UI.SIZE,
 	"height": Ti.UI.SIZE,
 	"color": "#555"
 },
-
 "TextField[platform=android]": {
-	height: Ti.UI.SIZE,
-	color: "#333"
-}
-
+	"height": Ti.UI.SIZE,
+	"color": "#333"
+},
 "Button": {
 	"color": "#ffffff",
 	"borderRadius": "10",
 	"borderWidth": "0",
 	"height": "45",
-	"width":"27%"
+	"width": "27%"
 }

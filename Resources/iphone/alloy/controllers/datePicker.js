@@ -8,6 +8,10 @@ function __processArg(obj, key) {
 }
 
 function Controller() {
+    function initView() {
+        _.extend($.datePicker, args.attributes);
+        date = new Date().toGMTString();
+    }
     function onUpdate(e) {
         var d = new Date(e.value);
         date = d.toGMTString();
@@ -90,8 +94,8 @@ function Controller() {
     var args = arguments[0] || {};
     var cancel = args.cancel || null;
     var ok = args.ok || null;
-    _.extend($.datePicker, args.attributes);
-    var date = new Date($.picker.value).toGMTString();
+    var date;
+    initView();
     __defers["$.__views.picker!change!onUpdate"] && $.__views.picker.addEventListener("change", onUpdate);
     __defers["$.__views.submitBtn!click!onSubmit"] && $.__views.submitBtn.addEventListener("click", onSubmit);
     __defers["$.__views.cancelBtn!click!onCancel"] && $.__views.cancelBtn.addEventListener("click", onCancel);

@@ -1,13 +1,18 @@
 <Alloy>
- 	<!-- Navigation scheme for the application -->
- 
-   	<Require src="main" id="index" platform="android" />
-   	
-	<NavigationWindow platform="ios">
-		<Require src="main" />
-	</NavigationWindow>
-	
-	<NavigationGroup platform="mobileweb">
-		<Require src="main" />
-	</NavigationGroup>
+    <Window class="container" titleid="addItem">
+        <View layout="vertical">
+            <Label id="titleLbl" textid="titleLbl"/>
+            <TextField id="titleTxt" />
+            <Label id="notesLbl" textid="notesLbl"/>
+            <TextArea id="notesTxt" />
+            <View id="View_2" onClick="onCalendarClick">
+                <TextField id="dateTxt" name="dateTxt" touchEnabled="false" />
+                <ImageView id="calendarBtn"/>
+            </View>
+            <View id="View_1">
+                <Button backgroundColor="#cb564d" id="cancelBtn" onClick="onClickDelete"/>
+                <Button backgroundColor="#3792c6" id="saveBtn" onClick="onClickSave"/>
+            </View>
+        </View>
+    </Window>
 </Alloy>
