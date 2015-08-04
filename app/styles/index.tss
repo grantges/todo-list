@@ -56,10 +56,8 @@
 	"height": "45dp",
 	"width": "27%"
 },
-"#cancelBtn": {
-	"titleid": "cancelBtn",
+"#deleteBtn": {
+	"titleid": "deleteBtn",
 	"left": "5%",
 	"width": "27%"
-},
-".myNewClass": {
 }

@@ -13,6 +13,8 @@ var myModel = Alloy.createModel('item');
  */
 function onClickDelete(e) {
 
+	alert("Deleting model: \n\n"+JSON.stringify(myModel.toJSON()));	
+
 	/**
 	 * Delete the Model from the Datbase
 	 */

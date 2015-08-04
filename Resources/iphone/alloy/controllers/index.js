@@ -9,6 +9,7 @@ function __processArg(obj, key) {
 
 function Controller() {
     function onClickDelete() {
+        alert("Deleting model: \n\n" + JSON.stringify(myModel.toJSON()));
         myModel.destroy();
     }
     function onClickSave() {
@@ -189,19 +190,19 @@ function Controller() {
         id: "View_1"
     });
     $.__views.__alloyId0.add($.__views.View_1);
-    $.__views.cancelBtn = Ti.UI.createButton({
+    $.__views.deleteBtn = Ti.UI.createButton({
         color: "#ffffff",
         borderRadius: "10",
         borderWidth: "0",
         height: "45",
         width: "27%",
-        titleid: "cancelBtn",
+        titleid: "deleteBtn",
         left: "5%",
         backgroundColor: "#cb564d",
-        id: "cancelBtn"
+        id: "deleteBtn"
     });
-    $.__views.View_1.add($.__views.cancelBtn);
-    onClickDelete ? $.__views.cancelBtn.addEventListener("click", onClickDelete) : __defers["$.__views.cancelBtn!click!onClickDelete"] = true;
+    $.__views.View_1.add($.__views.deleteBtn);
+    onClickDelete ? $.__views.deleteBtn.addEventListener("click", onClickDelete) : __defers["$.__views.deleteBtn!click!onClickDelete"] = true;
     $.__views.saveBtn = Ti.UI.createButton({
         color: "#ffffff",
         borderRadius: "10",
@@ -220,7 +221,7 @@ function Controller() {
     var myModel = Alloy.createModel("item");
     $.index.open();
     __defers["$.__views.View_2!click!onCalendarClick"] && $.__views.View_2.addEventListener("click", onCalendarClick);
-    __defers["$.__views.cancelBtn!click!onClickDelete"] && $.__views.cancelBtn.addEventListener("click", onClickDelete);
+    __defers["$.__views.deleteBtn!click!onClickDelete"] && $.__views.deleteBtn.addEventListener("click", onClickDelete);
     __defers["$.__views.saveBtn!click!onClickSave"] && $.__views.saveBtn.addEventListener("click", onClickSave);
     _.extend($, exports);
 }
